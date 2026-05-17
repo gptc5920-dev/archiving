@@ -9,10 +9,13 @@ It also includes a small Django REST Framework API for user account CRUD operati
 ```powershell
 python -m venv .venv
 .\.venv\Scripts\python -m pip install -r requirements.txt
+Copy-Item .env.example .env
 .\.venv\Scripts\python manage.py migrate
 .\.venv\Scripts\python manage.py createsuperuser
 .\.venv\Scripts\python manage.py runserver
 ```
+
+The app uses PostgreSQL. After copying `.env.example`, set `POSTGRES_DB`, `POSTGRES_USER`, `POSTGRES_PASSWORD`, `POSTGRES_HOST`, and `POSTGRES_PORT` in `.env` before running migrations. Make sure the target database exists, for example `archiving`.
 
 The Django admin UI uses [Unfold](https://unfoldadmin.com/) and is available at `/admin/`. It includes a branded sidebar, command search, account badges, user-list tabs, and dashboard user stats.
 

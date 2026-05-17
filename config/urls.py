@@ -21,8 +21,15 @@ from django.contrib.auth import views as auth_views
 from django.urls import include, path
 from django.views.generic import RedirectView
 
+
+admin_index_redirect = RedirectView.as_view(
+    pattern_name='admin:index',
+    permanent=False,
+)
+
 urlpatterns = [
-    path('', RedirectView.as_view(url='/admin/', permanent=False), name='admin-redirect'),
+    path('', admin_index_redirect, name='index'),
+    path('index/', admin_index_redirect, name='admin-index-redirect'),
     path(
         'admin/password_reset/',
         auth_views.PasswordResetView.as_view(),

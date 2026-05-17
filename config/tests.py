@@ -12,6 +12,14 @@ class RootURLTests(SimpleTestCase):
 
         self.assertRedirects(response, "/admin/", fetch_redirect_response=False)
 
+    def test_index_redirects_to_admin(self):
+        response = self.client.get("/index/")
+
+        self.assertRedirects(response, "/admin/", fetch_redirect_response=False)
+
+    def test_root_url_is_named_index(self):
+        self.assertEqual(reverse("index"), "/")
+
 
 class SidebarSettingsTests(SimpleTestCase):
     def test_dashboard_is_above_student_records(self):
